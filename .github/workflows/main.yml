@@ -34,5 +34,3 @@ jobs:
         run: |
           # main.pyの実行
           python main.py
-© 2022 GitHub, Inc.
-Terms
