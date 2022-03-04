@@ -45,7 +45,7 @@ with open("weight_list", mode="r", encoding="utf-8") as f:
     last_weight = f.readlines()[-1].split(",")
 
 count = int(last_weight[0]) + 1
-count_text = "✨ ダイエット開始から" + str(count) + "日目✨ "
+count_text = "🌷ダイエット開始から" + str(count) + "日目🌷 "
 print(last_weight[1])
 
 difference = float(last_weight[1]) - round(weight,1)
@@ -81,7 +81,7 @@ for follow in follow_list[0]:
 
 
 
-s_count = 30
+s_count = 50
 results = client.search_recent_tweets(query=keyword, max_results=s_count, user_fields = "name", expansions=["author_id","referenced_tweets.id"],)
 
 for result in results.data: 
