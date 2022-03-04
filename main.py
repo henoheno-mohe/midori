@@ -31,7 +31,7 @@ date_num = month + "/" + day
 animal = ["🐷", "🐮", "🐭", "🐻", "🐼", "🐔", "🐵", "🐶"]
 aisatsu = "おはようございます" + random.choice(animal)
 print(aisatsu)
-
+print(date)
 
 
 weight = 58 - 1 * random.random()
@@ -45,7 +45,7 @@ with open("weight_list", mode="r", encoding="utf-8") as f:
     last_weight = f.readlines()[-1].split(",")
 
 count = int(last_weight[0]) + 1
-count_text = "✨ ダイエット開始から" + str(count) + "日目✨ "
+count_text = "🌷 ダイエット開始から" + str(count) + "日目🌷 "
 print(last_weight[1])
 
 difference = float(last_weight[1]) - round(weight,1)
@@ -73,7 +73,7 @@ keyword = "#ダイエット垢さんと繋がりたい -is:retweet -is:reply"
 follow_cnt = 0
 
 # 現在のフォローリストを作成
-follow_list = client.get_users_following(id="1406435825244540928",max_results=200)
+follow_list = client.get_users_following(id="1406435825244540928",max_results=400)
 follow_lists = []
 
 for follow in follow_list[0]:
@@ -81,7 +81,7 @@ for follow in follow_list[0]:
 
 
 
-s_count = 30
+s_count = 50
 results = client.search_recent_tweets(query=keyword, max_results=s_count, user_fields = "name", expansions=["author_id","referenced_tweets.id"],)
 
 for result in results.data: 
