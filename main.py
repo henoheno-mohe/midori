@@ -64,7 +64,7 @@ text = count_text + "\n" + aisatsu + "\n" + "\n" + date + "\n" + weight_text + "
 print(text)
 
 
-#client.create_tweet(text=text)
+client.create_tweet(text=text)
 
 
 # フォロー数
@@ -114,33 +114,33 @@ for follow_id in follow_list.data:
 
 
 
-# 検索キーワード
-keyword = "#ダイエット垢さんと繋がりたい -is:retweet -is:reply"
+# # 検索キーワード
+# keyword = "#ダイエット垢さんと繋がりたい -is:retweet -is:reply"
 
-# フォロー数
-follow_cnt = 0
+# # フォロー数
+# follow_cnt = 0
 
-# 現在のフォローリストを作成
-follow_list = client.get_users_following(id="1406435825244540928",max_results=400)
-follow_lists = []
+# # 現在のフォローリストを作成
+# follow_list = client.get_users_following(id="1406435825244540928",max_results=400)
+# follow_lists = []
 
-for follow in follow_list[0]:
-    follow_lists.append(follow.id)
+# for follow in follow_list[0]:
+#     follow_lists.append(follow.id)
 
 
-s_count = 50
-results = client.search_recent_tweets(query=keyword, max_results=s_count, user_fields = "name", expansions=["author_id","referenced_tweets.id"],)
+# s_count = 50
+# results = client.search_recent_tweets(query=keyword, max_results=s_count, user_fields = "name", expansions=["author_id","referenced_tweets.id"],)
+
+# # for result in results.data: 
+# #     print(result.author_id)
+# #     # print(result.referenced_tweets)
+
 
 # for result in results.data: 
-#     print(result.author_id)
-#     # print(result.referenced_tweets)
-
-
-for result in results.data: 
-    client.like(tweet_id=result.id)
-#フォローリストにこのツイート主がいなければフォローする。
-    if result.author_id not in follow_lists:
-        client.follow_user(result.author_id)
-        print(result.author_id)
-#61秒停止する
-        time.sleep(61)
+#     client.like(tweet_id=result.id)
+# #フォローリストにこのツイート主がいなければフォローする。
+#     if result.author_id not in follow_lists:
+#         client.follow_user(result.author_id)
+#         print(result.author_id)
+# #61秒停止する
+#         time.sleep(61)
