@@ -77,7 +77,7 @@ follow_lists = []
 for follow in follow_list[0]:
     follow_lists.append(follow.id)
 
-followers_list = client.get_users_following(id="1406435825244540928", max_results = 200)
+followers_list = client.get_users_following(id="1406435825244540928", max_results = 1000)
 
 
 # フォローを解除する
