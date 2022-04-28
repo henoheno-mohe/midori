@@ -67,6 +67,45 @@ print(text)
 client.create_tweet(text=text)
 
 
+# # フォロー数
+# follow_cnt = 0
+
+# # 現在のフォローリストを作成
+# follow_list = client.get_users_following(id="1406435825244540928",max_results=1000)
+# follow_lists = []
+
+# for follow in follow_list[0]:
+#     follow_lists.append(follow.id)
+
+# followers_list = client.get_users_following(id="1406435825244540928", max_results = 1000)
+
+
+# フォローを解除する
+
+#　フォロー解除数
+# unfollow_cnt = 0
+# followers_lists = []
+# for follower in followers_list.data:
+#     followers_lists.append(follower.id)
+
+# for follow_id in follow_list.data:
+
+#     #フレンドがフォロワーにいない（相互フォローではない）
+#     if follow_id.id not in followers_list:
+#         if unfollow_cnt <= 50:
+#             client.unfollow_user(target_user_id=follow_id.id)
+#             print("フォローを解除したユーザ： {}".format(follow_id.name))
+#             time.sleep(60)
+#             unfollow_cnt += 1
+#         else:
+#             print('フォロー解除数が50人を超えたため、処理停止')
+#             break
+
+
+
+# 検索キーワード
+keyword = "#ダイエット垢さんと繋がりたい -is:retweet -is:reply"
+
 # フォロー数
 follow_cnt = 0
 
@@ -77,70 +116,20 @@ follow_lists = []
 for follow in follow_list[0]:
     follow_lists.append(follow.id)
 
-followers_list = client.get_users_following(id="1406435825244540928", max_results = 1000)
 
-
-# フォローを解除する
-
-#　フォロー解除数
-unfollow_cnt = 0
-followers_lists = []
-for follower in followers_list.data:
-    followers_lists.append(follower.id)
-
-for follow_id in follow_list.data:
-
-    #フレンドがフォロワーにいない（相互フォローではない）
-    if follow_id.id not in followers_list:
-        if unfollow_cnt <= 50:
-            client.unfollow_user(target_user_id=follow_id.id)
-            print("フォローを解除したユーザ： {}".format(follow_id.name))
-            time.sleep(60)
-            unfollow_cnt += 1
-        else:
-            print('フォロー解除数が50人を超えたため、処理停止')
-            break
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # 検索キーワード
-# keyword = "#ダイエット垢さんと繋がりたい -is:retweet -is:reply"
-
-# # フォロー数
-# follow_cnt = 0
-
-# # 現在のフォローリストを作成
-# follow_list = client.get_users_following(id="1406435825244540928",max_results=400)
-# follow_lists = []
-
-# for follow in follow_list[0]:
-#     follow_lists.append(follow.id)
-
-
-# s_count = 50
-# results = client.search_recent_tweets(query=keyword, max_results=s_count, user_fields = "name", expansions=["author_id","referenced_tweets.id"],)
-
-# # for result in results.data: 
-# #     print(result.author_id)
-# #     # print(result.referenced_tweets)
-
+s_count = 50
+results = client.search_recent_tweets(query=keyword, max_results=s_count, user_fields = "name", expansions=["author_id","referenced_tweets.id"],)
 
 # for result in results.data: 
-#     client.like(tweet_id=result.id)
-# #フォローリストにこのツイート主がいなければフォローする。
-#     if result.author_id not in follow_lists:
-#         client.follow_user(result.author_id)
-#         print(result.author_id)
-# #61秒停止する
-#         time.sleep(61)
+#     print(result.author_id)
+#     # print(result.referenced_tweets)
+
+
+for result in results.data: 
+    client.like(tweet_id=result.id)
+#フォローリストにこのツイート主がいなければフォローする。
+    if result.author_id not in follow_lists:
+        client.follow_user(result.author_id)
+        print(result.author_id)
+#61秒停止する
+        time.sleep(61)
