@@ -131,5 +131,5 @@ for result in results.data:
     if result.author_id not in follow_lists:
         client.follow_user(result.author_id)
         print(result.author_id)
-#61秒停止する
-        time.sleep(61)
+#60秒停止する
+        time.sleep(60)
